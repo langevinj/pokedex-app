@@ -5,8 +5,10 @@ import "./Pokedex.css"
 function Pokedex(props) {
     return (
         <div>
-            <h2 className="Pokedex-title">Pokedex</h2>
+            <h1 className="Pokedex-title">Hand</h1>
             { props.pokemon.map(pokemon => generatePokecard(pokemon))}
+            {/* <h3 className="Pokedex-pointTotal">Total EXP: {props.totalExp}</h3> */}
+            <h2 className="Pokedex-winner">{props.isWinner ? "THIS HAND WINDS" : ""}</h2>
         </div>
     )
 }

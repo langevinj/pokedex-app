@@ -1,10 +1,12 @@
 import React from 'react';
 import Pokedex from './Pokedex.js';
+import './Pokegame.css'
 
 function generatePokegame(props){
-    const half = 4;
+    const half = props.pokemon.length / 2;
     let pokemonArray = props.pokemon;
     let firstHand = []
+    let secondHand = []
 
     //set the first hand randomly
     while(firstHand.length < half){
@@ -13,7 +15,7 @@ function generatePokegame(props){
             firstHand.push(pokemonArray[randIdx])
         }
     }
-    let secondHand = []
+    
     //set second hand with remaining pokemon
     pokemonArray.forEach(function (pokemon){
         if (!firstHand.includes(pokemon)) { 
@@ -21,12 +23,28 @@ function generatePokegame(props){
         }
     }); 
 
+    let firstHandTotal = calcExp(firstHand);
+    let secondHandTotal = calcExp(secondHand);
+
     return(
         <div>
-            <Pokedex pokemon={firstHand} />
-            <Pokedex pokemon={secondHand} />
+            <Pokedex pokemon={firstHand} totalExp={firstHandTotal} isWinner={isWinner(firstHandTotal, secondHandTotal)}/>
+            <div className='Pokegame-pokeball'></div>
+            <Pokedex pokemon={secondHand} totalExp={secondHandTotal} isWinner={isWinner(secondHandTotal, firstHandTotal)}/>
         </div>
     )
+}
+
+function calcExp(hand){
+    let total = 0;
+    for(let pokemon of hand){
+        total += pokemon.base_experience;
+    }
+    return total
+}
+
+function isWinner(currHandTotal, otherHandTotal){
+    return currHandTotal > otherHandTotal;
 }
 
 generatePokegame.defaultProps = {

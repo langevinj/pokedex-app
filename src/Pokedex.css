@@ -1,3 +1,8 @@
 .Pokedex-title{
-    color: gray;
+    color: white;
+}
+
+.Pokedex-winner{
+    font-size: 40px;
+    color: white;
 }
