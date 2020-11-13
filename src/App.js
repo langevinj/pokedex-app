@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Pokedex from './Pokedex';
+import Pokegame from './Pokegame';
 
 function App() {
+  // const pokemon = [{id:4,name:'Charmander',type:'fire',base_experience: 62}]
   return (
+
     <div className="App">
-      <Pokedex />
+      <Pokegame />
     </div>
   );
 }
